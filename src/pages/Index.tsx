@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from '@/hooks/use-toast';
-import { Github, Zap, TrendingUp, CheckCircle, Play, Settings, BarChart3, Clock, Target, Star, GitBranch, User, PlayCircle, Shield, Eye, Code2, Sparkles, ArrowRight } from 'lucide-react';
+import { Github, Zap, TrendingUp, CheckCircle, Play, Settings, BarChart3, Clock, Target, Star, GitBranch, User, PlayCircle, Shield, Eye, Code2, Sparkles } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
 // Supabase configuration
@@ -430,18 +430,12 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
-
+    <div className="min-h-screen bg-slate-900">
       {/* Navigation */}
       <nav className="relative z-10 px-6 py-4 bg-slate-900/95 backdrop-blur-sm border-b border-slate-700/50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-gradient-to-br from-green-400 to-green-600 rounded-xl shadow-lg">
+            <div className="p-2 bg-green-500 rounded-xl">
               <Code2 className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -464,17 +458,10 @@ const Index = () => {
               <Button 
                 onClick={signInWithGoogle}
                 disabled={isLoading}
-                className="bg-green-500 hover:bg-green-600 text-white transition-all duration-200 hover:scale-105"
+                className="bg-green-500 hover:bg-green-600 text-white"
               >
                 <Sparkles className="h-4 w-4 mr-2" />
-                {isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    Signing in...
-                  </div>
-                ) : (
-                  'Get Started'
-                )}
+                {isLoading ? 'Signing in...' : 'Get Started'}
               </Button>
             )}
           </div>
@@ -482,68 +469,56 @@ const Index = () => {
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-6">
         {/* Hero Section */}
-        <div className="py-24 text-center">
-          <div className="inline-flex items-center gap-2 bg-slate-800/50 border border-slate-600/50 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
+        <div className="py-20 text-center">
+          <div className="inline-flex items-center gap-2 bg-slate-800/50 border border-slate-600 rounded-full px-4 py-2 mb-8">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
             <span className="text-sm text-slate-300">Automate Your GitHub Contributions</span>
           </div>
           
-          <div className="space-y-4 mb-8">
-            <h1 className="text-6xl md:text-7xl font-bold text-white leading-tight animate-fade-in">
-              Build GitHub Profiles
-            </h1>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-400 animate-fade-in-delay">
-              that impress
-            </h2>
-          </div>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Build
+            <br />
+            <span className="text-green-400">GitHub Profiles</span>
+            <br />
+            <span className="text-slate-400">that impress</span>
+          </h1>
           
-          <div className="space-y-3 mb-12 animate-fade-in-delay-2">
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              Create consistent, professional commit patterns that showcase your dedication.
-            </p>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Automate your GitHub contributions with precision and style.
-            </p>
-          </div>
+          <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-4">
+            Create consistent, professional commit patterns that showcase your dedication.
+          </p>
+          <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-12">
+            Automate your GitHub contributions with precision and style.
+          </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-delay-3">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Button 
               size="lg" 
               onClick={signInWithGoogle}
               disabled={isLoading}
-              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 group"
+              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg transition-all duration-200 hover:scale-105"
             >
-              <Play className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
-              {isLoading ? (
-                <div className="flex items-center gap-2">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                  Starting...
-                </div>
-              ) : (
-                <>
-                  Start Building
-                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </>
-              )}
+              <Play className="h-5 w-5 mr-2" />
+              {isLoading ? 'Starting...' : 'Start Building'}
+              <span className="ml-2">→</span>
             </Button>
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-slate-600 text-slate-400 hover:bg-slate-800 px-8 py-4 text-lg hover:text-slate-300 bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105 backdrop-blur-sm group"
+              className="border-slate-600 text-slate-400 hover:bg-slate-800 px-8 py-4 text-lg hover:text-slate-300 bg-slate-700 hover:bg-slate-600 transition-all duration-200"
             >
-              <PlayCircle className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
+              <PlayCircle className="h-5 w-5 mr-2" />
               <span>Watch Video</span>
             </Button>
           </div>
 
-          <div className="flex items-center justify-center gap-8 text-sm text-slate-500 animate-fade-in-delay-4">
-            <div className="flex items-center gap-2 hover:text-slate-400 transition-colors">
+          <div className="flex items-center justify-center gap-8 text-sm text-slate-500">
+            <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-green-400" />
               <span>Manual Control</span>
             </div>
-            <div className="flex items-center gap-2 hover:text-slate-400 transition-colors">
+            <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-green-400" />
               <span>Real-time Monitoring</span>
             </div>
@@ -562,7 +537,7 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <Card className="bg-slate-800/50 border-slate-700 transition-all duration-300 hover:bg-slate-800/70 hover:scale-105 backdrop-blur-sm">
+            <Card className="bg-slate-800/50 border-slate-700 transition-all duration-200 hover:bg-slate-800/70">
               <CardHeader>
                 <CardTitle className="text-red-400 flex items-center gap-2">
                   <TrendingUp className="h-5 w-5 rotate-180" />
@@ -577,7 +552,7 @@ const Index = () => {
                   {Array.from({ length: 84 }, (_, i) => (
                     <div 
                       key={i} 
-                      className={`h-3 rounded-sm transition-all duration-200 hover:scale-110 ${
+                      className={`h-3 rounded-sm transition-all duration-200 ${
                         Math.random() > 0.8 ? 'bg-green-300/40' : 'bg-slate-700'
                       }`} 
                     />
@@ -589,7 +564,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-800/50 border-green-500/30 transition-all duration-300 hover:bg-slate-800/70 hover:scale-105 backdrop-blur-sm">
+            <Card className="bg-slate-800/50 border-green-500/30 transition-all duration-200 hover:bg-slate-800/70">
               <CardHeader>
                 <CardTitle className="text-green-400 flex items-center gap-2">
                   <TrendingUp className="h-5 w-5" />
@@ -604,7 +579,7 @@ const Index = () => {
                   {Array.from({ length: 84 }, (_, i) => (
                     <div 
                       key={i} 
-                      className={`h-3 rounded-sm transition-all duration-200 hover:scale-110 ${
+                      className={`h-3 rounded-sm transition-all duration-200 ${
                         Math.random() > 0.3 ? 'bg-green-500' : 'bg-green-400/60'
                       }`} 
                     />
@@ -620,7 +595,7 @@ const Index = () => {
 
         {/* Tutorial Section */}
         <div className="py-16">
-          <div className="bg-slate-800/30 rounded-2xl p-8 border border-slate-700 backdrop-blur-sm">
+          <div className="bg-slate-800/30 rounded-2xl p-8 border border-slate-700">
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2 mb-4">
                 <PlayCircle className="h-4 w-4 text-blue-400" />
@@ -635,7 +610,7 @@ const Index = () => {
             </div>
             
             <div className="max-w-4xl mx-auto">
-              <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-600 backdrop-blur-sm">
+              <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-600">
                 <div className="aspect-video w-full">
                   <iframe
                     width="100%"
@@ -684,7 +659,7 @@ const Index = () => {
         {/* Control Panel Section */}
         {isAuthenticated && (
           <div className="py-16">
-            <div className="bg-slate-800/30 rounded-2xl p-8 border border-slate-700 backdrop-blur-sm">
+            <div className="bg-slate-800/30 rounded-2xl p-8 border border-slate-700">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2 mb-4">
                   <Settings className="h-4 w-4 text-green-400" />
@@ -716,7 +691,7 @@ const Index = () => {
                   </TabsList>
 
                   <TabsContent value="setup" className="space-y-6">
-                    <Card className="bg-slate-900/50 border-slate-600 backdrop-blur-sm">
+                    <Card className="bg-slate-900/50 border-slate-600">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-white">
                           <Github className="h-5 w-5" />
@@ -802,15 +777,8 @@ const Index = () => {
                               </div>
                             </div>
 
-                            <Button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white py-3 transition-all duration-200 hover:scale-105" disabled={isLoading}>
-                              {isLoading ? (
-                                <div className="flex items-center gap-2">
-                                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                                  Confirming...
-                                </div>
-                              ) : (
-                                'Confirm Credentials'
-                              )}
+                            <Button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white py-3" disabled={isLoading}>
+                              {isLoading ? 'Confirming...' : 'Confirm Credentials'}
                             </Button>
                           </form>
                         )}
@@ -819,7 +787,7 @@ const Index = () => {
                   </TabsContent>
 
                   <TabsContent value="trigger" className="space-y-6">
-                    <Card className="bg-slate-900/50 border-slate-600 backdrop-blur-sm">
+                    <Card className="bg-slate-900/50 border-slate-600">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-white">
                           <Zap className="h-5 w-5" />
@@ -860,7 +828,7 @@ const Index = () => {
                         
                         <Button 
                           onClick={manualTrigger} 
-                          className="w-full py-6 text-lg bg-green-500 hover:bg-green-600 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25" 
+                          className="w-full py-6 text-lg bg-green-500 hover:bg-green-600 text-white transition-all duration-200 hover:scale-105" 
                           disabled={isLoading}
                         >
                           {isLoading ? (
@@ -880,7 +848,7 @@ const Index = () => {
                   </TabsContent>
 
                   <TabsContent value="logs" className="space-y-6">
-                    <Card className="bg-slate-900/50 border-slate-600 backdrop-blur-sm">
+                    <Card className="bg-slate-900/50 border-slate-600">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-white">
                           <BarChart3 className="h-5 w-5" />
@@ -941,7 +909,7 @@ const Index = () => {
         {/* Call to Action for Non-Authenticated Users */}
         {!isAuthenticated && (
           <div className="py-16 text-center">
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 backdrop-blur-sm">
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
               <h2 className="text-3xl font-bold text-white mb-4">
                 Ready to Transform Your GitHub?
               </h2>
@@ -952,52 +920,16 @@ const Index = () => {
                 size="lg" 
                 onClick={signInWithGoogle}
                 disabled={isLoading}
-                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 group"
+                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg transition-all duration-200 hover:scale-105"
               >
-                <Sparkles className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
-                {isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    Starting...
-                  </div>
-                ) : (
-                  <>
-                    Get Started Now
-                    <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
+                <Sparkles className="h-5 w-5 mr-2" />
+                {isLoading ? 'Starting...' : 'Get Started Now'}
+                <span className="ml-2">→</span>
               </Button>
             </div>
           </div>
         )}
       </div>
-
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out;
-        }
-        
-        .animate-fade-in-delay {
-          animation: fade-in 0.8s ease-out 0.2s both;
-        }
-        
-        .animate-fade-in-delay-2 {
-          animation: fade-in 0.8s ease-out 0.4s both;
-        }
-        
-        .animate-fade-in-delay-3 {
-          animation: fade-in 0.8s ease-out 0.6s both;
-        }
-        
-        .animate-fade-in-delay-4 {
-          animation: fade-in 0.8s ease-out 0.8s both;
-        }
-      `}</style>
     </div>
   );
 };
