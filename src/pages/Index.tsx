@@ -230,10 +230,14 @@ const Index = () => {
   const signInWithGoogle = async () => {
     try {
       setIsLoading(true);
+      
+      // Get the current domain dynamically
+      const currentDomain = window.location.origin;
+      
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: 'https://gitmaxing.vercel.app',
+          redirectTo: currentDomain,
           queryParams: {
             access_type: 'offline',
             prompt: 'select_account'
