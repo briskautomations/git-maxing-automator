@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from '@/hooks/use-toast';
-import { Github, Zap, TrendingUp, CheckCircle, Play, Settings, BarChart3, Clock, Target, Star, GitBranch, User, PlayCircle, Shield, Eye, Code2, Sparkles } from 'lucide-react';
+import { Github, Zap, TrendingUp, CheckCircle, Play, Settings, BarChart3, Clock, Target, Star, GitBranch, User, PlayCircle, Shield, Eye } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
 // Supabase configuration
@@ -233,7 +233,7 @@ const Index = () => {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: window.location.origin,
+          redirectTo: 'https://gitmaxing.vercel.app',
           queryParams: {
             access_type: 'offline',
             prompt: 'select_account'
@@ -430,27 +430,24 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       {/* Navigation */}
-      <nav className="relative z-10 px-6 py-4 bg-slate-900/95 backdrop-blur-sm border-b border-slate-700/50">
+      <nav className="relative z-10 px-6 py-4 bg-gray-900/50 backdrop-blur-sm border-b border-gray-700">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-500 rounded-xl">
-              <Code2 className="h-6 w-6 text-white" />
+            <div className="p-2 bg-green-500 rounded-lg">
+              <Github className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <span className="text-2xl font-bold text-white">Git Maxing</span>
-              <p className="text-sm text-slate-400">Automated Commits</p>
-            </div>
+            <span className="text-2xl font-bold text-white">Git Maxing</span>
           </div>
           <div className="flex items-center gap-4">
             {isAuthenticated ? (
               <>
-                <div className="flex items-center gap-2 text-slate-300">
+                <div className="flex items-center gap-2 text-gray-300">
                   <User className="h-4 w-4" />
                   <span className="text-sm">Welcome, {currentUser?.user_metadata?.full_name || currentUser?.email}</span>
                 </div>
-                <Button variant="outline" onClick={handleSignOut} className="border-slate-600 text-slate-300 hover:bg-slate-800">
+                <Button variant="outline" onClick={handleSignOut} className="border-gray-600 text-gray-300 hover:bg-gray-800">
                   Sign Out
                 </Button>
               </>
@@ -460,7 +457,6 @@ const Index = () => {
                 disabled={isLoading}
                 className="bg-green-500 hover:bg-green-600 text-white"
               >
-                <Sparkles className="h-4 w-4 mr-2" />
                 {isLoading ? 'Signing in...' : 'Get Started'}
               </Button>
             )}
@@ -471,25 +467,21 @@ const Index = () => {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6">
         {/* Hero Section */}
-        <div className="py-20 text-center">
-          <div className="inline-flex items-center gap-2 bg-slate-800/50 border border-slate-600 rounded-full px-4 py-2 mb-8">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-sm text-slate-300">Automate Your GitHub Contributions</span>
+        <div className="py-16 text-center">
+          <div className="inline-flex items-center gap-2 bg-gray-800/50 border border-gray-600 rounded-full px-4 py-2 mb-8">
+            <Star className="h-4 w-4 text-green-400" />
+            <span className="text-sm text-gray-300">Transform your GitHub presence</span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Build
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            Build <span className="text-green-400">GitHub</span> Profiles
             <br />
-            <span className="text-green-400">GitHub Profiles</span>
-            <br />
-            <span className="text-slate-400">that impress</span>
+            <span className="text-gray-400">that stand out</span>
           </h1>
           
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-4">
-            Create consistent, professional commit patterns that showcase your dedication.
-          </p>
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-12">
-            Automate your GitHub contributions with precision and style.
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-12">
+            Automate your GitHub contribution patterns with precision. Create consistent, 
+            professional commit histories that showcase your coding dedication.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -497,23 +489,18 @@ const Index = () => {
               size="lg" 
               onClick={signInWithGoogle}
               disabled={isLoading}
-              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg transition-all duration-200 hover:scale-105"
+              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg"
             >
               <Play className="h-5 w-5 mr-2" />
               {isLoading ? 'Starting...' : 'Start Building'}
-              <span className="ml-2">→</span>
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-slate-600 text-slate-400 hover:bg-slate-800 px-8 py-4 text-lg hover:text-slate-300 bg-slate-700 hover:bg-slate-600 transition-all duration-200"
-            >
-              <PlayCircle className="h-5 w-5 mr-2" />
-              <span>Watch Video</span>
+            <Button variant="outline" size="lg" className="border-gray-600 text-gray-400 hover:bg-gray-800 px-8 py-4 text-lg hover:text-gray-300">
+              <Eye className="h-5 w-5 mr-2" />
+              <span>View Examples</span>
             </Button>
           </div>
 
-          <div className="flex items-center justify-center gap-8 text-sm text-slate-500">
+          <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-green-400" />
               <span>Manual Control</span>
@@ -521,6 +508,10 @@ const Index = () => {
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-green-400" />
               <span>Real-time Monitoring</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-400" />
+              <span>Secure & Private</span>
             </div>
           </div>
         </div>
@@ -531,19 +522,19 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               See the Transformation
             </h2>
-            <p className="text-lg text-slate-400">
+            <p className="text-lg text-gray-400">
               Watch how Git Maxing transforms sparse contribution graphs into impressive patterns
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <Card className="bg-slate-800/50 border-slate-700 transition-all duration-200 hover:bg-slate-800/70">
+            <Card className="bg-gray-800/50 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-red-400 flex items-center gap-2">
                   <TrendingUp className="h-5 w-5 rotate-180" />
                   Before Git Maxing
                 </CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardDescription className="text-gray-400">
                   Sparse, inconsistent contribution pattern
                 </CardDescription>
               </CardHeader>
@@ -552,25 +543,25 @@ const Index = () => {
                   {Array.from({ length: 84 }, (_, i) => (
                     <div 
                       key={i} 
-                      className={`h-3 rounded-sm transition-all duration-200 ${
-                        Math.random() > 0.8 ? 'bg-green-300/40' : 'bg-slate-700'
+                      className={`h-3 rounded-sm ${
+                        Math.random() > 0.8 ? 'bg-green-300/40' : 'bg-gray-700'
                       }`} 
                     />
                   ))}
                 </div>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-gray-500">
                   Only 23 contributions in the last 3 months
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-800/50 border-green-500/30 transition-all duration-200 hover:bg-slate-800/70">
+            <Card className="bg-gray-800/50 border-green-500/30">
               <CardHeader>
                 <CardTitle className="text-green-400 flex items-center gap-2">
                   <TrendingUp className="h-5 w-5" />
                   After Git Maxing
                 </CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardDescription className="text-gray-400">
                   Consistent, professional contribution pattern
                 </CardDescription>
               </CardHeader>
@@ -579,13 +570,13 @@ const Index = () => {
                   {Array.from({ length: 84 }, (_, i) => (
                     <div 
                       key={i} 
-                      className={`h-3 rounded-sm transition-all duration-200 ${
+                      className={`h-3 rounded-sm ${
                         Math.random() > 0.3 ? 'bg-green-500' : 'bg-green-400/60'
                       }`} 
                     />
                   ))}
                 </div>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-gray-500">
                   147 contributions in the last 3 months
                 </p>
               </CardContent>
@@ -595,7 +586,7 @@ const Index = () => {
 
         {/* Tutorial Section */}
         <div className="py-16">
-          <div className="bg-slate-800/30 rounded-2xl p-8 border border-slate-700">
+          <div className="bg-gray-800/30 rounded-2xl p-8 border border-gray-700">
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2 mb-4">
                 <PlayCircle className="h-4 w-4 text-blue-400" />
@@ -604,13 +595,13 @@ const Index = () => {
               <h2 className="text-2xl font-bold text-white mb-2">
                 Get Your GitHub Credentials
               </h2>
-              <p className="text-slate-400">
+              <p className="text-gray-400">
                 Watch this tutorial to learn how to generate your GitHub API token
               </p>
             </div>
             
             <div className="max-w-4xl mx-auto">
-              <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-600">
+              <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-600">
                 <div className="aspect-video w-full">
                   <iframe
                     width="100%"
@@ -623,12 +614,12 @@ const Index = () => {
                     className="rounded-lg"
                   ></iframe>
                 </div>
-                <div className="mt-6 bg-slate-800/50 rounded-lg p-4">
+                <div className="mt-6 bg-gray-800/50 rounded-lg p-4">
                   <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
                     <Shield className="h-5 w-5 text-green-400" />
                     Quick Setup Steps:
                   </h3>
-                  <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-300">
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
                     <div className="space-y-2">
                       <div className="flex items-start gap-2">
                         <span className="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mt-0.5">1</span>
@@ -659,7 +650,7 @@ const Index = () => {
         {/* Control Panel Section */}
         {isAuthenticated && (
           <div className="py-16">
-            <div className="bg-slate-800/30 rounded-2xl p-8 border border-slate-700">
+            <div className="bg-gray-800/30 rounded-2xl p-8 border border-gray-700">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2 mb-4">
                   <Settings className="h-4 w-4 text-green-400" />
@@ -668,36 +659,36 @@ const Index = () => {
                 <h2 className="text-2xl font-bold text-white mb-2">
                   Configure & Execute Git Maxing
                 </h2>
-                <p className="text-slate-400">
+                <p className="text-gray-400">
                   Enter your credentials and start building your GitHub profile
                 </p>
               </div>
 
               <div className="max-w-4xl mx-auto">
                 <Tabs defaultValue="setup" className="space-y-6">
-                  <TabsList className="grid w-full grid-cols-3 bg-slate-900/50 border border-slate-600">
-                    <TabsTrigger value="setup" className="flex items-center gap-2 text-slate-300 data-[state=active]:text-white data-[state=active]:bg-slate-700">
+                  <TabsList className="grid w-full grid-cols-3 bg-gray-900/50 border border-gray-600">
+                    <TabsTrigger value="setup" className="flex items-center gap-2 text-gray-300 data-[state=active]:text-white data-[state=active]:bg-gray-700">
                       <Settings className="h-4 w-4" />
                       Setup
                     </TabsTrigger>
-                    <TabsTrigger value="trigger" disabled={!credentialsConfirmed} className="flex items-center gap-2 text-slate-300 data-[state=active]:text-white data-[state=active]:bg-slate-700 disabled:opacity-50">
+                    <TabsTrigger value="trigger" disabled={!credentialsConfirmed} className="flex items-center gap-2 text-gray-300 data-[state=active]:text-white data-[state=active]:bg-gray-700 disabled:opacity-50">
                       <Play className="h-4 w-4" />
                       Execute
                     </TabsTrigger>
-                    <TabsTrigger value="logs" className="flex items-center gap-2 text-slate-300 data-[state=active]:text-white data-[state=active]:bg-slate-700">
+                    <TabsTrigger value="logs" className="flex items-center gap-2 text-gray-300 data-[state=active]:text-white data-[state=active]:bg-gray-700">
                       <BarChart3 className="h-4 w-4" />
                       Logs
                     </TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="setup" className="space-y-6">
-                    <Card className="bg-slate-900/50 border-slate-600">
+                    <Card className="bg-gray-900/50 border-gray-600">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-white">
                           <Github className="h-5 w-5" />
                           Repository Configuration
                         </CardTitle>
-                        <CardDescription className="text-slate-400">
+                        <CardDescription className="text-gray-400">
                           Configure your GitHub repository and API credentials
                         </CardDescription>
                       </CardHeader>
@@ -718,7 +709,7 @@ const Index = () => {
                             <Button 
                               variant="outline" 
                               onClick={() => setCredentialsConfirmed(false)}
-                              className="w-full border-slate-600 text-slate-300 hover:bg-slate-700"
+                              className="w-full border-gray-600 text-gray-300 hover:bg-gray-700"
                             >
                               Edit Credentials
                             </Button>
@@ -727,33 +718,33 @@ const Index = () => {
                           <form onSubmit={confirmCredentials} className="space-y-6">
                             <div className="grid md:grid-cols-2 gap-6">
                               <div>
-                                <label className="text-sm font-medium mb-2 block text-slate-300">GitHub Repository URL</label>
+                                <label className="text-sm font-medium mb-2 block text-gray-300">GitHub Repository URL</label>
                                 <Input
                                   type="url"
                                   placeholder="https://github.com/username/repository"
                                   value={repoData.repoUrl}
                                   onChange={(e) => setRepoData(prev => ({ ...prev, repoUrl: e.target.value }))}
                                   required
-                                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400"
+                                  className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
                                 />
                               </div>
                               
                               <div>
-                                <label className="text-sm font-medium mb-2 block text-slate-300">GitHub API Token</label>
+                                <label className="text-sm font-medium mb-2 block text-gray-300">GitHub API Token</label>
                                 <Input
                                   type="password"
                                   placeholder="github_pat_..."
                                   value={repoData.githubApi}
                                   onChange={(e) => setRepoData(prev => ({ ...prev, githubApi: e.target.value }))}
                                   required
-                                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400"
+                                  className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400"
                                 />
                               </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
                               <div>
-                                <label className="text-sm font-medium mb-2 block text-slate-300">Trigger Count</label>
+                                <label className="text-sm font-medium mb-2 block text-gray-300">Trigger Count</label>
                                 <Input
                                   type="number"
                                   min="1"
@@ -761,18 +752,18 @@ const Index = () => {
                                   value={repoData.triggerCount}
                                   onChange={(e) => setRepoData(prev => ({ ...prev, triggerCount: parseInt(e.target.value) }))}
                                   required
-                                  className="bg-slate-700/50 border-slate-600 text-white"
+                                  className="bg-gray-700/50 border-gray-600 text-white"
                                 />
                               </div>
                               <div>
-                                <label className="text-sm font-medium mb-2 block text-slate-300">Interval (seconds)</label>
+                                <label className="text-sm font-medium mb-2 block text-gray-300">Interval (seconds)</label>
                                 <Input
                                   type="number"
                                   min="1"
                                   value={repoData.intervalSeconds}
                                   onChange={(e) => setRepoData(prev => ({ ...prev, intervalSeconds: parseInt(e.target.value) }))}
                                   required
-                                  className="bg-slate-700/50 border-slate-600 text-white"
+                                  className="bg-gray-700/50 border-gray-600 text-white"
                                 />
                               </div>
                             </div>
@@ -787,13 +778,13 @@ const Index = () => {
                   </TabsContent>
 
                   <TabsContent value="trigger" className="space-y-6">
-                    <Card className="bg-slate-900/50 border-slate-600">
+                    <Card className="bg-gray-900/50 border-gray-600">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-white">
                           <Zap className="h-5 w-5" />
                           Execute Git Maxing
                         </CardTitle>
-                        <CardDescription className="text-slate-400">
+                        <CardDescription className="text-gray-400">
                           Start your automated GitHub contribution sequence
                         </CardDescription>
                       </CardHeader>
@@ -828,7 +819,7 @@ const Index = () => {
                         
                         <Button 
                           onClick={manualTrigger} 
-                          className="w-full py-6 text-lg bg-green-500 hover:bg-green-600 text-white transition-all duration-200 hover:scale-105" 
+                          className="w-full py-6 text-lg bg-green-500 hover:bg-green-600 text-white" 
                           disabled={isLoading}
                         >
                           {isLoading ? (
@@ -848,19 +839,19 @@ const Index = () => {
                   </TabsContent>
 
                   <TabsContent value="logs" className="space-y-6">
-                    <Card className="bg-slate-900/50 border-slate-600">
+                    <Card className="bg-gray-900/50 border-gray-600">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-white">
                           <BarChart3 className="h-5 w-5" />
                           Execution History
                         </CardTitle>
-                        <CardDescription className="text-slate-400">
+                        <CardDescription className="text-gray-400">
                           Track your Git Maxing execution history and results
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
                         {executionLog.length === 0 ? (
-                          <div className="text-center py-12 text-slate-500">
+                          <div className="text-center py-12 text-gray-500">
                             <BarChart3 className="h-12 w-12 mx-auto mb-4 opacity-30" />
                             <p className="text-lg mb-2">No executions yet</p>
                             <p className="text-sm">Start your first Git Maxing session to see logs here!</p>
@@ -870,14 +861,14 @@ const Index = () => {
                             {executionLog.map((entry) => (
                               <div 
                                 key={entry.id}
-                                className={`flex justify-between items-center p-4 rounded-lg border transition-all duration-200 hover:scale-[1.02] ${
+                                className={`flex justify-between items-center p-4 rounded-lg border ${
                                   entry.status === 'Success' 
                                     ? 'bg-green-900/20 border-green-500/30' 
                                     : 'bg-red-900/20 border-red-500/30'
                                 }`}
                               >
                                 <div className="flex-1">
-                                  <p className="font-medium text-sm text-slate-300">{entry.repoUrl}</p>
+                                  <p className="font-medium text-sm text-gray-300">{entry.repoUrl}</p>
                                   {entry.errorMessage && (
                                     <p className="text-xs text-red-400 mt-1">{entry.errorMessage}</p>
                                   )}
@@ -889,7 +880,7 @@ const Index = () => {
                                   >
                                     {entry.status}
                                   </Badge>
-                                  <p className="text-xs text-slate-500">
+                                  <p className="text-xs text-gray-500">
                                     {new Date(entry.timestamp).toLocaleString()}
                                   </p>
                                 </div>
@@ -909,22 +900,21 @@ const Index = () => {
         {/* Call to Action for Non-Authenticated Users */}
         {!isAuthenticated && (
           <div className="py-16 text-center">
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
+            <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-2xl p-8 border border-green-500/30">
               <h2 className="text-3xl font-bold text-white mb-4">
                 Ready to Transform Your GitHub?
               </h2>
-              <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
+              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
                 Join thousands of developers who have already enhanced their GitHub profiles with Git Maxing
               </p>
               <Button 
                 size="lg" 
                 onClick={signInWithGoogle}
                 disabled={isLoading}
-                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg transition-all duration-200 hover:scale-105"
+                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg"
               >
-                <Sparkles className="h-5 w-5 mr-2" />
+                <Play className="h-5 w-5 mr-2" />
                 {isLoading ? 'Starting...' : 'Get Started Now'}
-                <span className="ml-2">→</span>
               </Button>
             </div>
           </div>
